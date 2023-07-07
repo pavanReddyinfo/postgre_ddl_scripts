@@ -1,0 +1,16 @@
+steps:
+  - name: 'gcr.io/cloud-builders/gcloud'
+    args: ['sql', 'connect', 'cicd-pipeline-for-postgre:us-central1:testdb1', '--user=postgres', '--password=Test@123', '--database=testdb1']
+
+Steps:
+  - name: 'gcr.io/cloud-builders/gcloud'
+    args: ['sql', 'connect', 'cicd-pipeline-for-postgre:us-central1:testdb1', '--user=postgres', '--password=Test@123', '--database=testdb1']
+
+  - name: 'gcr.io/cloud-builders/gsutil'
+    args: ['cp', 'gs://postgre_ddl_scripts/crewpro_allinone (2).sql', '/workspace/crewpro_allinone (2).sql']
+
+  - name: 'gcr.io/cloud-builders/gcloud'
+    args: ['sql', 'import', 'sql', 'testdb1', '/workspace/crewpro_allinone (2).sql']
+
+  - name: 'gcr.io/cloud-builders/gcloud'
+    args: ['sql', 'connect', 'cicd-pipeline-for-postgre:us-central1:testdb1', '--user=postgres', '--password=Test@123', '--database=testdb1', '--command=GRANT ALL PRIVILEGES ON DATABASE testdb1 TO postgres;']
