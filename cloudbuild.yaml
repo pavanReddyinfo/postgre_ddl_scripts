@@ -1,6 +1,4 @@
-steps:
-  - name: 'gcr.io/cloud-builders/gcloud'
-    args: ['sql', 'connect', 'cicd-pipeline-for-postgre:us-central1:testdb1', '--user=postgres', '--password=Test@123', '--database=testdb1']
+
 
 Steps:
   - name: 'gcr.io/cloud-builders/gcloud'
