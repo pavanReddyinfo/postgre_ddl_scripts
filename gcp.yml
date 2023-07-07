@@ -1,0 +1,5 @@
+steps:
+  - name: 'gcr.io/cloud-builders/gcloud'
+    args: ['sql', 'connect', 'my-instance', '-d', 'my-database', '--user=root', '--password=secretpassword', '--quiet', '--command=source /workspace/my-script.sql']
+
+
